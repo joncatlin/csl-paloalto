@@ -1,32 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Xml.Serialization;
 
 namespace Start
 {
-    public class Rule
+    public class Members
     {
-        public Rule()
+        public Members()
         {
         }
 
-        public Rule(string name, string param1, string param2, string param3)
+        public Members(string[] member)
+        {
+            Member = member;
+        }
+        [XmlElement("Member")]
+        public string[] Member { get; set; }
+    }
+
+
+    public class Entry
+    {
+        public Entry()
+        {
+        }
+
+        public Entry(string name, Members to, Members from, Members source)
         {
             Name = name;
-            Param1 = param1;
-            Param2 = param2;
-            Param3 = param3;
+            To = to;
+            From = from;
+            Source = source;
         }
 
+        [XmlAttribute("Name")]
         public string Name { get; set; }
-        public string Param1 { get; set; }
-        public string Param2 { get; set; }
-        public string Param3 { get; set; }
+        public Members To { get; set; }
+        public Members From { get; set; }
+        public Members Source { get; set; }
     }
 
 
     class Program
     {
+        private static readonly int TO = 8;
+        private static readonly int FROM = 4;
+        private static readonly int NAME = 1;
+        private static readonly int SOURCE = 5;
+
         static void Main(string[] args)
         {
             string fileName = null;
@@ -62,41 +85,35 @@ namespace Start
         }
 
 
-        private static List<Rule> ProcessFile(string fileName, string delimiter)
+        private static List<Entry> ProcessFile(string fileName, string delimiter)
         {
-            int lines = 0;
             bool firstLine = true;
-            List<Rule> rules = new List<Rule>();
+            List<Entry> rules = new List<Entry>();
+            string r = File.ReadAllText(fileName, Encoding.ASCII);
+            string[] lines = r.Split("\r\n");
 
-            using (StreamReader sr = File.OpenText(fileName))
-            {
-                string s = String.Empty;
-
-                // Read the first line for the heading information for each metric
-                //var headings = ParseLine(sr.ReadLine());
-
-                while ((s = sr.ReadLine()) != null)
+            foreach (string line in lines) {
+                string[] elements = line.Split(delimiter);
+                if (firstLine)
                 {
-                    lines++;
-                    string[] elements = s.Split(delimiter);
-                    if (firstLine)
+                    // The first line of the file should contain headings. Save them minus the first few columns
+                    // which contain none metric information.
+                    firstLine = false;
+                }
+                else
+                {
+                    if (elements.Length == 16)
                     {
-                        // The first line of the file should contain headings. Save them minus the first few columns
-                        // which contain none metric information.
-                        firstLine = false;
+                        // For each line create an object with the data retrieved
+                        var rule = new Entry(elements[NAME], 
+                            getMembersLF(elements[TO].Trim('"')), 
+                            getMembersLF(elements[FROM].Trim('"')), 
+                            getMembersLF(elements[SOURCE].Trim('"')));
+                        rules.Add(rule);
                     }
                     else
                     {
-                        if (elements.Length == 4)
-                        {
-                            // For each line create an object with the data retrieved
-                            var rule = new Rule(elements[0], elements[1], elements[2], elements[3]);
-                            rules.Add(rule);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Line in file is missing parameters, element 0 = {0}.", elements[0]);
-                        }
+                        Console.WriteLine("Line in file is missing parameters, element 0 = {0}.", elements[0]);
                     }
                 }
             }
@@ -105,18 +122,31 @@ namespace Start
         }
 
 
-        private static void OutputXML(List<Rule> rules, string path)
+        private static Members getMembersLF(string data)
         {
-            System.Xml.Serialization.XmlSerializer writer =
-                new System.Xml.Serialization.XmlSerializer(typeof(Rule));
+            string[] elements = data.Split("\n");
+            return new Members(elements);
+        }
 
-            System.IO.FileStream file = System.IO.File.Create(path + "\\rules.xml");
 
-            foreach(Rule rule in rules)
+        private static Members getMembersSP(string data)
+        {
+            string[] elements = data.Split(" ");
+            return new Members(elements);
+        }
+
+
+        private static void OutputXML(List<Entry> rules, string path)
+        {
+            XmlSerializer writer =
+                new XmlSerializer(typeof(Entry));
+            using (TextWriter file = new StreamWriter(path + "\\rules.xml"))
             {
-                writer.Serialize(file, rule);
+                foreach (Entry rule in rules)
+                {
+                    writer.Serialize(file, rule);
+                }
             }
-            file.Close();
         }
     }
 }
