@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Address xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Addresses>
+    <AddressEntry Name="ClubExploria_01">
+      <Description />
+      <ip-netmask>50.73.158.165</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="CSC_COX">
+      <Description />
+      <ip-netmask>184.185.173.210</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="IBEROSTAR_01">
+      <Description />
+      <ip-netmask>84.124.26.186</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="IBEROSTAR_02">
+      <Description />
+      <ip-netmask>46.24.16.66</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="IBEROSTAR_03">
+      <Description />
+      <ip-netmask>212.145.135.100</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="IBEROSTAR_04">
+      <Description />
+      <ip-netmask>148.223.208.231</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_01">
+      <Description />
+      <ip-netmask>63.240.233.252</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_02">
+      <Description />
+      <ip-netmask>12.129.124.29</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_03">
+      <Description />
+      <ip-netmask>12.116.217.237</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_04">
+      <Description />
+      <ip-netmask>212.120.136.66</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_05">
+      <Description />
+      <ip-netmask>203.194.87.66</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_06">
+      <Description />
+      <ip-netmask>42.61.107.50</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_07">
+      <Description />
+      <ip-range>199.108.197.0-255.255.255.0</ip-range>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_08">
+      <Description />
+      <ip-netmask>118.201.64.146</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_09">
+      <Description />
+      <ip-netmask>63.240.234.118</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_10">
+      <Description />
+      <ip-netmask>148.244.112.138</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_11">
+      <Description />
+      <ip-netmask>206.121.113.46</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="MARRIOTT_12">
+      <Description />
+      <ip-range>167.122.5.0-255.255.255.0</ip-range>
+    </AddressEntry>
+    <AddressEntry Name="Summerbay_01">
+      <Description />
+      <ip-netmask>209.49.206.132</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="WELK_01">
+      <Description />
+      <ip-netmask>70.168.63.194</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="WELK_TESTSERVER">
+      <Description />
+      <ip-netmask>70.168.63.230</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="WELK_02">
+      <Description />
+      <Fqdn>ownerslounge.welkresorts.com</Fqdn>
+    </AddressEntry>
+    <AddressEntry Name="WELK_WEBSERVICE_IP">
+      <Description />
+      <ip-netmask>70.168.63.217</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="IOP_WAN">
+      <Description />
+      <ip-netmask>72.44.200.188</ip-netmask>
+    </AddressEntry>
+    <AddressEntry Name="IOS_WAN">
+      <Description />
+      <ip-netmask>69.71.60.252</ip-netmask>
+    </AddressEntry>
+  </Addresses>
+</Address>
